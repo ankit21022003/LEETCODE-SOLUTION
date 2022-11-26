@@ -1,0 +1,19 @@
+//method 1
+
+class Solution {
+public:
+    char repeatedCharacter(string s) {
+
+            unordered_map<char,int>ump;
+            for(int i=0;i<s.size();i++)
+            {
+                if(ump.find(s[i])!=ump.end())
+                return s[i];
+
+                ump[s[i]]++;
+            }
+            
+        return '0';
+
+    }
+};
