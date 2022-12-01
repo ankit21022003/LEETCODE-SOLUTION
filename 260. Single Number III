@@ -1,0 +1,46 @@
+#####APPROACH 1#### 
+class Solution {
+public:
+    vector<int> singleNumber(vector<int>& nums) {
+        vector<int>ans;
+        map<int,int>mp;
+        for(auto it : nums)
+        {
+            mp[it]++;
+        }
+        for(int i=0;i<nums.size();i++)
+        {
+            if(mp[nums[i]]==1)
+            ans.push_back(nums[i]);
+        }
+        return ans;
+        
+    }
+};
+
+
+
+#####APPROACH 2#####3
+class Solution {
+public:
+    vector<int> singleNumber(vector<int>& nums) {
+        long xor1=0;
+        vector<int>ans(2,0);
+        for(auto it: nums)
+        {
+            xor1=xor1^it;
+        }
+        xor1=(xor1)&(-xor1);
+        for(auto it :nums)
+        {
+            if(xor1&it)       //SET BIT WALA 
+            ans[0]=ans[0]^it;
+            else              //BINA SET BIT WALA 
+            ans[1]=ans[1]^it;
+        }
+
+        return ans;
+        
+        
+    }
+};
