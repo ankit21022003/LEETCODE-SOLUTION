@@ -1,0 +1,70 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* oddEvenList(ListNode* head) {
+        
+        int count=1;
+        ListNode* oddh=NULL;
+        ListNode* oddt=NULL;
+        ListNode* evenh=NULL;
+        ListNode* event=NULL;
+        while(head!=NULL){
+        if(count%2)
+        {
+            if(oddh==NULL)               //TO MARK THE HEAD OF ODD LINKLIST
+            {
+                oddh=head;
+                oddt=head;
+                head=head->next;
+            }
+            else                        //TO MARK AND UPDATE THE TAIL OF ODD LINK LIST
+            {
+                oddt->next=head;
+                oddt=oddt->next;
+                head=head->next;
+            }
+        }
+
+        else
+        {
+            if(evenh==NULL)                      //TO MARK HEAD OF EVEN LINK LIST
+            {
+                evenh=head;
+                event=head;
+                head=head->next;
+            }
+            else                                    //TO MARK AND UPDATE TAIL OF EVEN LINKLIST
+            {
+                event->next=head;
+                event=event->next;
+                head=head->next;
+            }
+
+        }
+
+        count++;                                
+        }
+     
+        if(evenh==NULL)                 //TO CHECK IF LINKLIST HAS ONLY ONE NODE
+        return oddh;
+
+
+            event->next=NULL;           // JOINING BOTH THE LINKLIST
+
+            oddt->next=evenh;
+
+
+            return oddh;                //RETURNING THE HEAD OF ODD LINKLIST
+
+        
+    }
+};
